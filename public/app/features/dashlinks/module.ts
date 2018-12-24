@@ -41,20 +41,20 @@ function dashLink($compile, $sanitize, linkSrv) {
       elem.html(template);
       $compile(elem.contents())(scope);
 
+      var anchor = elem.find('a');
+      var icon = elem.find('i');
+      var span = elem.find('span');
+
       function update() {
         var linkInfo = linkSrv.getAnchorInfo(link);
-
-        const anchor = elem.find('a');
-        const span = elem.find('span');
         span.text(linkInfo.title);
-
         if (!link.asDropdown) {
           anchor.attr('href', linkInfo.href);
           sanitizeAnchor();
         }
-        anchor.attr('data-placement', 'bottom');
+        elem.find('a').attr('data-placement', 'bottom');
         // tooltip
-        anchor.tooltip({
+        elem.find('a').tooltip({
           title: $sanitize(scope.link.tooltip),
           html: true,
           container: 'body',
@@ -62,13 +62,12 @@ function dashLink($compile, $sanitize, linkSrv) {
       }
 
       function sanitizeAnchor() {
-        const anchor = elem.find('a');
         const anchorSanitized = $sanitize(anchor.parent().html());
         anchor.parent().html(anchorSanitized);
       }
 
-      elem.find('i').attr('class', 'fa fa-fw ' + scope.link.icon);
-      elem.find('a').attr('target', scope.link.target);
+      icon.attr('class', 'fa fa-fw ' + scope.link.icon);
+      anchor.attr('target', scope.link.target);
 
       // fix for menus on the far right
       if (link.asDropdown && scope.$last) {

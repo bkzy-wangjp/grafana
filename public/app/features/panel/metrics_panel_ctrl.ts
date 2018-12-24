@@ -62,8 +62,8 @@ class MetricsPanelCtrl extends PanelCtrl {
   }
 
   private onInitMetricsPanelEditMode() {
-    this.addEditorTab('Metrics', metricsTabDirective);
-    this.addEditorTab('Time range', 'public/app/features/panel/partials/panelTime.html');
+    this.addEditorTab('度量', metricsTabDirective);
+    this.addEditorTab('时间范围', 'public/app/features/panel/partials/panelTime.html');
   }
 
   private onMetricsPanelRefresh() {
@@ -222,7 +222,7 @@ class MetricsPanelCtrl extends PanelCtrl {
     // and add built in variables interval and interval_ms
     var scopedVars = Object.assign({}, this.panel.scopedVars, {
       __interval: { text: this.interval, value: this.interval },
-      __interval_ms: { text: String(this.intervalMs), value: String(this.intervalMs) },
+      __interval_ms: { text: this.intervalMs, value: this.intervalMs },
     });
 
     var metricsQuery = {

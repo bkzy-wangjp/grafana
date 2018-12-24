@@ -190,7 +190,7 @@ function pluginDirectiveLoader($compile, datasourceSrv, $rootScope, $q, $http, $
       }
       default: {
         return $q.reject({
-          message: 'Could not find component type: ' + attrs.type,
+          message: '找不到组件类型：' + attrs.type,
         });
       }
     }
@@ -223,7 +223,7 @@ function pluginDirectiveLoader($compile, datasourceSrv, $rootScope, $q, $http, $
 
     if (!componentInfo.Component) {
       throw {
-        message: 'Failed to find exported plugin component for ' + componentInfo.name,
+        message: '无法找到导出的插件组件 ' + componentInfo.name,
       };
     }
 
@@ -246,7 +246,7 @@ function pluginDirectiveLoader($compile, datasourceSrv, $rootScope, $q, $http, $
         })
         .catch(err => {
           $rootScope.appEvent('alert-error', ['Plugin Error', err.message || err]);
-          console.log('Plugin component error', err);
+          console.log('插件组件错误', err);
         });
     },
   };
